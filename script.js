@@ -59,9 +59,10 @@ function generatePassword() {
     }
   } while(!useNumbers && !useLowerCase && !useUpperCase && !useSpecial);
   
-  let passArray = [];//resets
+  let passArray = [];
+
   if (useNumbers) {
-    passArray.splice(0,0,...numbers);//The three dots means to include the whole array
+    passArray.splice(0,0,...numbers);
   } 
   if (useLowerCase) {
     passArray.splice(0,0,...lowerCase);
@@ -80,7 +81,7 @@ function generatePassword() {
   return password;
 }
 
-// Write password to the #password input
+
 function writePassword() {
   var passwordText = document.querySelector("#password");
   passwordText.value = " ";
@@ -89,7 +90,6 @@ function writePassword() {
   passwordText.value = password;
 }
 
-// Assignment Code
 var generateBtn = document.querySelector("#generate");
-// Add event listener to generate button
+
 generateBtn.addEventListener("click", writePassword);
