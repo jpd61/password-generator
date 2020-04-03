@@ -1,102 +1,95 @@
 // Assignment code here
 
-// Create strings to pull from
-var lowerCharacters = "abcdefghijklmnopqrstuvwxyz";
-var upperCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-var numericCharacters = "0123456789";
-var specialCharacters = "!#$%&'()*+,-./:;<=>?@[]^_`{}~";
-
-// Combined strings 
-var combinedCharacters = [];
+let numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+let lowerCase = "abcdefghijklmnopqrstuvwxyz".split("");
+let upperCase = lowerCase.map(function (letter) {
+  return letter.toUpperCase();
+    })
+let special = "!@#$%^&*()-_+=?/\[]{}<>".split(""); 
 
 
-// Create user-slected criteria
-var userInput = parseInt(prompt(
-    "How many characters would you like your password to contain?"
-    ));
+function promptForLength() {
+  let userResponse = prompt("How long would you like your password to be? (8 to 128 characters please)");
+  let numberResponse = Number(userResponse);
+  while (isNaN(numberResponse) || numberResponse > 128 || numberResponse < 8) {
+      if (isNaN(numberResponse)) {
+        userResponse = prompt("That's not a number. Please enter a number.");
+      }
+      else if(numberResponse > 128) {
+        userResponse = prompt("That's too many characters.");
+      }
+      else if (numberResponse < 8) {
+        userResponse = prompt("That's not enough characters.");
+      }
+      numberResponse = Number(userResponse);//Need to turn that value into a number once again if we get to this point because everytime the userResponse is asked it's value is always a string. 
+  } 
+  return numberResponse;   
+}
 
-
-// confirm boxes
-var lowercase = confirm('Click OK to confirm using lowercase characters');
-var uppercase = confirm('Click OK to confirm using uppercase characters');
-var numbers = confirm('Click OK to confirm using numbers');
-var special = confirm('Click OK to confirm using special characters');
-
-
-var userLength = function(){
-
-    // Conditional statement to check if password length is a number. Prompts end if this evaluates false
-    if (isNaN(userInput) === true) {
-        alert("Password length must be provided as a number");
-        return;
+function promptForCharacters(question) {
+  let response = prompt(question).toLowerCase();
+  do {
+    if(response === "yes") {
+      return true;
     }
-
-    // Conditional statement to check if password length is at least 8 characters long. Prompts end if this evaluates false
-    if (userInput < 8) {
-        alert("Password length must be at least 8 characters");
-        return;
+    else if (response === "no") {
+      return false;
     }
-
-    // Conditional statement to check if password length is less than 128 characters long. Prompts end if this evaluates false
-    if (userInput > 128) {
-        alert("Password length must less than 129 characters");
-        return;
+    else {
+      response = prompt("I don't recognize that answer. " + question).toLowerCase();
     }
-
-    if (lowercase){
-        combinedCharacters += lowerCharacters;
-    }
-    if (uppercase){
-        combinedCharacters += upperCharacters;
-    }
-    if (numbers){
-        combinedCharacters += numericCharacters;
-    }
-    if (special){
-        combinedCharacters += specialCharacters;
-    }
-
-      // Conditional statement to check if user does not include any types of characters. Password generator ends if all four variables evaluate to false
-    if (
-        lowerCharacters === false &&
-        upperCharacters === false &&
-        numericCharacters === false &&
-        specialCharacters === false
-    ) {
-        alert("Must select at least one character type");
-        return;
-    }
+  } while (response !== "yes" && response !== "no"); 
 
 }
 
-// Generate random letters from array
-function randomLetter (arr) {
-    let letter = arr[Math.floor(Math.random() * arr.length)];
-    return letter;
-}
-
-// Loop through array 
-function generatePassword (arr) {
-    userLength();
-    var userPassword = "";
-    for(var i = 0; i <= userInput; i++) {
-        userPassword += randomLetter(arr);
+function generatePassword() {
+  let length = promptForLength();
+  let useNumbers = false;
+  let useLowerCase = false;
+  let useUpperCase = false;
+  let useSpecial = false;
+  
+  do {
+    useNumbers = promptForCharacters("Do you want to use numbers? (yes or no)");
+    useLowerCase = promptForCharacters("Do you want to use lower case letters? (yes or no)");
+    useUpperCase = promptForCharacters("Do you want to use upper case letters? (yes or no)");
+    useSpecial = promptForCharacters("Do you want to use special characters? (yes or no)");
+    if(!useNumbers && !useLowerCase && !useUpperCase && !useSpecial) {
+      alert("You need to choose at least one character type.");
     }
-    return generatePassword(password);
+  } while(!useNumbers && !useLowerCase && !useUpperCase && !useSpecial);
+  
+  let passArray = [];//resets
+  if (useNumbers) {
+    passArray.splice(0,0,...numbers);//The three dots means to include the whole array
+  } 
+  if (useLowerCase) {
+    passArray.splice(0,0,...lowerCase);
+  }
+  if (useUpperCase) {
+    passArray.splice(0,0,...upperCase);
+  }
+  if (useSpecial) {
+    passArray.splice(0,0,...special);
+  }
+  let password = "";
+  for(i = 0; i <= length; i++) {
+    let randomNum = Math.floor(Math.random() * passArray.length);
+    password += passArray[randomNum];
+  }
+  return password;
 }
-
-
-// Get references to the #generate element
-var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
   var passwordText = document.querySelector("#password");
-
+  passwordText.value = " ";
+  var password = generatePassword();
+  
   passwordText.value = password;
-
 }
 
+// Assignment Code
+var generateBtn = document.querySelector("#generate");
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
