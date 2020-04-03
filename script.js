@@ -39,7 +39,6 @@ function promptForType(question) {
       response = prompt("I don't recognize that answer. " + question).toLowerCase();
     }
   } while (true); 
-
 }
 
 //generate password function
