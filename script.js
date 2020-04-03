@@ -1,4 +1,3 @@
-// Assignment code here
 
 let numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 let lowerCase = "abcdefghijklmnopqrstuvwxyz".split("");
@@ -26,6 +25,7 @@ function promptForLength() {
   return numberResponse;   
 }
 
+
 function promptForCharacters(question) {
   let response = prompt(question).toLowerCase();
   do {
@@ -41,6 +41,7 @@ function promptForCharacters(question) {
   } while (response !== "yes" && response !== "no"); 
 
 }
+
 
 function generatePassword() {
   let length = promptForLength();
@@ -86,10 +87,11 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
   passwordText.value = " ";
   var password = generatePassword();
-  
   passwordText.value = password;
 }
 
+
 var generateBtn = document.querySelector("#generate");
+
 
 generateBtn.addEventListener("click", writePassword);
