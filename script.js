@@ -1,4 +1,4 @@
-
+//set variables
 let numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 let lowerCase = "abcdefghijklmnopqrstuvwxyz".split("");
 let upperCase = lowerCase.map(function (letter) {
@@ -6,7 +6,7 @@ let upperCase = lowerCase.map(function (letter) {
     })
 let special = "!@#$%^&*()-_+=?/\[]{}<>".split(""); 
 
-
+//length function
 function promptForLength() {
   let userResponse = prompt("How long should your password be? (8 to 128 characters please)");
   let numberResponse = Number(userResponse);
@@ -25,7 +25,7 @@ function promptForLength() {
   return numberResponse;   
 }
 
-
+//type of characters function
 function promptForType(question) {
   let response = prompt(question).toLowerCase();
   do {
@@ -42,7 +42,7 @@ function promptForType(question) {
 
 }
 
-
+//generate password function
 function generatePassword() {
   let length = promptForLength();
   let useNumbers = false;
@@ -82,7 +82,7 @@ function generatePassword() {
   return password;
 }
 
-
+//write password function
 function writePassword() {
   var passwordText = document.querySelector("#password");
   passwordText.value = " ";
