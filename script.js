@@ -8,19 +8,19 @@ let special = "!@#$%^&*()-_+=?/\[]{}<>".split("");
 
 
 function promptForLength() {
-  let userResponse = prompt("How long would you like your password to be? (8 to 128 characters please)");
+  let userResponse = prompt("How long should your password be? (8 to 128 characters please)");
   let numberResponse = Number(userResponse);
   while (isNaN(numberResponse) || numberResponse > 128 || numberResponse < 8) {
       if (isNaN(numberResponse)) {
-        userResponse = prompt("That's not a number. Please enter a number.");
+        userResponse = prompt("You must enter a number.");
       }
       else if(numberResponse > 128) {
-        userResponse = prompt("That's too many characters.");
+        userResponse = prompt("That's too many characters. Enter less than 128.");
       }
       else if (numberResponse < 8) {
-        userResponse = prompt("That's not enough characters.");
+        userResponse = prompt("That's not enough characters. Enter more than 8.");
       }
-      numberResponse = Number(userResponse);//Need to turn that value into a number once again if we get to this point because everytime the userResponse is asked it's value is always a string. 
+      numberResponse = Number(userResponse);
   } 
   return numberResponse;   
 }
