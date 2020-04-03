@@ -29,16 +29,16 @@ function promptForLength() {
 function promptForType(question) {
   let response = prompt(question).toLowerCase();
   do {
-    if(response === "yes") {
+    if(response === "y") {
       return true;
     }
-    else if (response === "no") {
+    else if (response === "n") {
       return false;
     }
     else {
       response = prompt("I don't recognize that answer. " + question).toLowerCase();
     }
-  } while (response !== "yes" && response !== "no"); 
+  } while (true); 
 
 }
 
@@ -51,10 +51,10 @@ function generatePassword() {
   let useSpecial = false;
   
   do {
-    useNumbers = promptForType("Do you want to use numbers? (yes or no)");
-    useLowerCase = promptForType("Do you want to use lower case letters? (yes or no)");
-    useUpperCase = promptForType("Do you want to use upper case letters? (yes or no)");
-    useSpecial = promptForType("Do you want to use special characters? (yes or no)");
+    useNumbers = promptForType("Do you want to use numbers? (y or n)");
+    useLowerCase = promptForType("Do you want to use lower case letters? (y or n)");
+    useUpperCase = promptForType("Do you want to use upper case letters? (y or n)");
+    useSpecial = promptForType("Do you want to use special characters? (y or n)");
     if(!useNumbers && !useLowerCase && !useUpperCase && !useSpecial) {
       alert("You need to choose at least one character type.");
     }
