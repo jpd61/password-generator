@@ -1,6 +1,8 @@
 # Password Generator
 
-https://jpd61.github.io/password-generator/
+Deployed Application: https://jpd61.github.io/password-generator/
+
+<img src="deployedapp.PNG" />
 
 I have two errors showing in console that I can't seem to understand/fix
 
