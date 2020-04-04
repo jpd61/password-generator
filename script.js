@@ -1,9 +1,7 @@
 //set variables
 let numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 let lowerCase = "abcdefghijklmnopqrstuvwxyz".split("");
-let upperCase = lowerCase.map(function (letter) {
-  return letter.toUpperCase();
-    })
+let upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 let special = "!@#$%^&*()-_+=?/\[]{}<>".split(""); 
 
 //length function
