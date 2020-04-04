@@ -4,6 +4,7 @@ let lowerCase = "abcdefghijklmnopqrstuvwxyz".split("");
 let upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 let special = "!@#$%^&*()-_+=?/\[]{}<>".split(""); 
 
+
 //length function
 function promptForLength() {
   let userResponse = prompt("How long should your password be? (8 to 128 characters please)");
@@ -23,6 +24,7 @@ function promptForLength() {
   return numberResponse;   
 }
 
+
 //type of characters function
 function promptForType(question) {
   let response = prompt(question).toLowerCase();
@@ -38,6 +40,7 @@ function promptForType(question) {
     }
   } while (true); 
 }
+
 
 //generate password function
 function generatePassword() {
@@ -78,6 +81,7 @@ function generatePassword() {
   }
   return password;
 }
+
 
 //write password function
 function writePassword() {
